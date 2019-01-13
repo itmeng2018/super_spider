@@ -1,0 +1,147 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Super Spider</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'css/nprogress.css' %}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+
+    <!-- User Style -->
+    <link rel="stylesheet" href="{% static 'css/user_style.css' %}">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'css/custom.min.css' %}" rel="stylesheet">
+
+    <!-- javascript -->
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+</head>
+
+<body class="login">
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form" style="position: relative">
+            <section class="login_content">
+                <form method="post" action="/user/login/" id="login_form">
+                    {% csrf_token %}
+                    <h1>Spider 管 理 平 台</h1>
+                    <div style="height: 100px">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="用户名"
+                               required="" style="height: 50px; margin-bottom: 10px;" />
+                        <span class="error_msg"></span>
+                    </div>
+                    <div style="height: 100px">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="密码"
+                               required="" style="height: 50px; margin-bottom: 10px;"/>
+                        <span class="error_msg"></span>
+                    </div>
+                    <div>
+
+                        <input type="text" class="form-control" placeholder="验证码" name="ver_code" id="ver_code"
+                               required="" style="width: 150px; height: 50px; float: left; margin-bottom: 15px;"/>
+
+{#                        <a href="{% url 'news:user_login' %}" style="position: absolute; top: 240px; right: 0; margin: 10px 0 0 0">#}
+                        <a style="position: absolute; top: 240px; right: 0; margin: 10px 0 0 0">
+                            <img id="ver_img" src="{% static 'image/vc.png' %}" alt="验证码"
+                                 style="width: 130px; height: 50px; float:left; margin-left: 70px;">
+                        </a>
+
+                    </div>
+
+                    <div style="width: 100px; height: 30px; margin-left: 0;">
+                        <span class="error_msg" id="ver_err"></span>
+                        <div style="color: red">{{ errmsg }}</div>
+                        <button class="btn btn-default submit"
+                                style="color: #77879a; font-size: 25px;margin-left: 0; margin-top: 35px; width: 350px; height: 50px; line-height: 35px">
+                            登
+                            &nbsp;录
+                        </button>
+                        <a class="reset_pass" href="#">忘记密码?</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">未注册过?
+                            <a href="#signup" class="to_register"> 创建一个账号 </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br/>
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Super Spider</h1>
+                            <p>©2016 All Rights Reserved. Supper Spider</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <form method="post" action="/user/register/" id="register_form">
+                    {% csrf_token %}
+                    <h1>注 册 账 号</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="用户名" required="" name="username" id="r_username"/>
+                        <span class="error_msg"></span>
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" placeholder="邮箱" required="" name="email" id="r_email"/>
+                        <span class="error_msg"></span>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="密码" required="" name="password" id="r_password"/>
+                        <span class="error_msg"></span>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="确认密码" required="" name="confirm_pwd" id="r_confirm_pwd"/>
+                        <span class="error_msg"></span>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="手机号" required="" name="phone" id="r_phone"/>
+                        <span class="error_msg" id="register_error"></span>
+                    </div>
+                    <div>
+                        <button class="btn btn-default submit" style="margin: 20px 0 20px"> 提 交</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">已有账号?
+                            <a href="#signin" class="to_register">&nbsp; 登 录 </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br/>
+
+                        <div>
+                            <h1><i class="fa fa-paw"></i> Super Spider</h1>
+                            <p>©2018 All Rights Reserved. Super Spider</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>
